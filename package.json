@@ -23,8 +23,14 @@
   },
   "homepage": "https://github.com/veltman/gulp-insecurity#readme",
   "dependencies": {
+    "event-stream": "^3.3.4",
     "gulp-util": "^3.0.7",
-    "insecurity": "^1.0.1",
+    "insecurity": "^2.0.0",
     "through2": "^2.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "tape": "^4.6.0",
+    "vinyl": "^1.2.0"
   }
 }

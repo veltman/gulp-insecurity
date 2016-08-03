@@ -1,0 +1,4 @@
+data/test.csv, line 3: http://wario.info/
+data/test.csv, line 5: http://waluigi.biz
+data/test.json, line 7: http://www.wario.com/?x=5&y=6
+data/test.json, line 9: http://www.wario.com/

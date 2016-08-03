@@ -1,0 +1,3 @@
+data/test.html: <link href="http://127.6.6.6/wario.css"
+data/test.html: <iframe src="http://www.wario.com/iframe"
+data/test.html: <script src="http://www.wario.com/test_files/script.js"

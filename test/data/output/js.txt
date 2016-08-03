@@ -1,0 +1,2 @@
+data/test.js, line 5: http://wario.info
+data/test.js, line 9: http://wario.tv

@@ -34,5 +34,22 @@ function wrapper(fn) {
 }
 
 function log(filename, warnings) {
-  console.log(filename, warnings);
+  var relative = filename.replace(new RegExp("^" + process.cwd()), "").replace(/^\//,"");
+  warnings.forEach(function(warning){
+    var message = relative + (warning.line ? ", line " + warning.line : "");
+    if (warning.tag) {
+      if (warning.inline) {
+        message += ", <" + warning.tag + "> inline: " + chalked(warning.url);
+      } else {
+        message += ": <" + warning.tag + " " + (warning.tag === "link" ? "href" : "src") + "=\"" + chalked(warning.url) + "\"";
+      }
+    } else {
+      message += ": " + chalked(warning.url);
+    }
+    console.log(message);
+  });
+}
+
+function chalked(url) {
+  return url.trim().replace(/^http:\/\//, gutil.colors.red("http://"));
 }

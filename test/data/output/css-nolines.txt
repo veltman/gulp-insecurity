@@ -1,0 +1,5 @@
+data/test.css: http://wario.info/bg1.png
+data/test.css: http://wario.info/bg2.png
+data/test.css: http://wario.info/bg2.png
+data/test.css: http://wario.info/mustache.ttf
+data/test.css: http://wario.info.mustache.cur
