@@ -1,5 +1,7 @@
 # gulp-insecurity
 
+[![Build Status](https://travis-ci.org/veltman/gulp-insecurity.svg?branch=master)](https://travis-ci.org/veltman/gulp-insecurity)
+
 Gulp plugin for [insecurity](https://github.com/veltman/insecurity/).
 
 ## Installation
