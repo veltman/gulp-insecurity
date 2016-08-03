@@ -1,0 +1,30 @@
+{
+  "name": "gulp-insecurity",
+  "version": "1.0.0",
+  "description": "Gulp plugin for detecting insecure URLs that could cause mixed content errors.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/veltman/gulp-insecurity.git"
+  },
+  "keywords": [
+    "ssl",
+    "https",
+    "mixed",
+    "content"
+  ],
+  "author": "Noah Veltman (@veltman)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/veltman/gulp-insecurity/issues"
+  },
+  "homepage": "https://github.com/veltman/gulp-insecurity#readme",
+  "dependencies": {
+    "gulp-util": "^3.0.7",
+    "insecurity": "^1.0.1",
+    "through2": "^2.0.1"
+  }
+}
