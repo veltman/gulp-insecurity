@@ -25,7 +25,7 @@
   "dependencies": {
     "event-stream": "^3.3.4",
     "gulp-util": "^3.0.7",
-    "insecurity": "^3.0.0",
+    "insecurity": "^3.1.0",
     "through2": "^2.0.1"
   },
   "devDependencies": {
