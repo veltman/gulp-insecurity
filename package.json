@@ -1,6 +1,6 @@
 {
   "name": "gulp-insecurity",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Gulp plugin for detecting insecure URLs that could cause mixed content errors.",
   "main": "index.js",
   "scripts": {
