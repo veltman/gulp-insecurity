@@ -16,14 +16,32 @@ function wrapper(fn) {
   return function(options) {
 
     return through.obj(function(file, encoding, cb) {
+
+      var warnings;
+
       if (file.isStream()) {
         file.contents.pipe(es.wait(function(err, body) {
-          if (!err) log(file.path, fn(body.toString(), options));
+          if (!err) {
+            try {
+              warnings = fn(body.toString(), options);
+              log(file.path, warnings);
+            } catch(e) {
+              if ("filename" in e) e.filename = relativeFilename(file.path);
+              return cb(e, file);
+            }
+          }
+
           return cb(err, file);
         }));
       } else {
         if (file.isBuffer()) {
-          log(file.path, fn(file.contents.toString(), options));
+          try {
+            warnings = fn(file.contents.toString(), options);
+            log(file.path, warnings);
+          } catch(e) {
+            if ("filename" in e) e.filename = relativeFilename(file.path);
+            return cb(e, file);
+          }
         }
         return cb(null, file);
       }
@@ -34,7 +52,7 @@ function wrapper(fn) {
 }
 
 function log(filename, warnings) {
-  var relative = filename.replace(new RegExp("^" + process.cwd()), "").replace(/^\//,"");
+  var relative = relativeFilename(filename);
   warnings.forEach(function(warning){
     var message = relative + (warning.line ? ", line " + warning.line : "");
     if (warning.tag) {
@@ -52,4 +70,8 @@ function log(filename, warnings) {
 
 function chalked(url) {
   return url.trim().replace(/^http:\/\//, gutil.colors.red("http://"));
+}
+
+function relativeFilename(filename) {
+  return filename.replace(new RegExp("^" + process.cwd()), "").replace(/^\//,"");
 }

@@ -63,7 +63,7 @@ tape("CSS", function(test) {
 
   var output = capture();
 
-  gulp.src(["data/*.css"])
+  gulp.src(["data/*.css", "!data/test-broken.css"])
     .pipe(insecurity.css())
     .on("finish", function(){
       compare(output(), "data/output/css.txt", test);
@@ -75,7 +75,7 @@ tape("CSS no lines", function(test) {
 
   var output = capture();
 
-  gulp.src(["data/*.css"])
+  gulp.src(["data/*.css", "!data/test-broken.css"])
     .pipe(insecurity.css({ lineNumbers: false}))
     .on("finish", function(){
       compare(output(), "data/output/css-nolines.txt", test);
@@ -115,6 +115,31 @@ tape("HTML inline", function(test) {
     .pipe(insecurity.html({ scripts: true, styles: true }))
     .on("finish", function(){
       compare(output(), "data/output/html-inline.txt", test);
+    });
+
+});
+
+tape("CSS error", function(test) {
+
+  gulp.src("data/*.css")
+    .pipe(insecurity.css())
+    .on("error", function(e){
+      test.ok(e);
+      test.equal(e.filename, "data/test-broken.css");
+      test.end();
+    });
+
+});
+
+tape("CSS quiet", function(test) {
+
+  gulp.src("data/test-broken.css")
+    .pipe(insecurity.css({ quiet: true }))
+    .on("error", function(e){
+      test.error(e);
+    })
+    .on("finish", function(){
+      test.end();
     });
 
 });
